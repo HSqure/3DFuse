@@ -138,6 +138,15 @@ def gen_pc_from_image(intermediate, image, prompt, keyword, bg_preprocess, seed)
     intermediate.points = points
     
     coords = np.array(points.coords)
+    
+    # pointcloud saving
+    i = 0
+    exp_instance_dir = os.path.join("./",keyword+"_"+str(i).zfill(4))
+    while os.path.exists(exp_instance_dir):
+        i += 1
+        exp_instance_dir = os.path.join("./",keyword+"_"+str(i).zfill(4))
+    coords.tofile(exp_instance_dir+'.bin')
+    
     trace = go.Scatter3d(x=coords[:,0], y=coords[:,1], z=coords[:,2], mode='markers', marker=dict(size=2))
 
     layout = go.Layout(
