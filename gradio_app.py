@@ -141,11 +141,11 @@ def gen_pc_from_image(intermediate, image, prompt, keyword, bg_preprocess, seed)
     
     # pointcloud saving
     i = 0
-    exp_instance_dir = os.path.join("./",keyword+"_"+str(i).zfill(4))
+    exp_instance_dir = os.path.join("./",keyword+"_"+str(i).zfill(4)+'.bin')
     while os.path.exists(exp_instance_dir):
         i += 1
-        exp_instance_dir = os.path.join("./",keyword+"_"+str(i).zfill(4))
-    coords.tofile(exp_instance_dir+'.bin')
+        exp_instance_dir = os.path.join("./",keyword+"_"+str(i).zfill(4)+'.bin')
+    coords.tofile(exp_instance_dir)
     
     trace = go.Scatter3d(x=coords[:,0], y=coords[:,1], z=coords[:,2], mode='markers', marker=dict(size=2))
 
